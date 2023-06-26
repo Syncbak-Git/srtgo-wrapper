@@ -18,7 +18,7 @@ cd srt
 make -j 4
 cd ../..
 cp ./tmp/srt/srtcore/*.h .
-cp ./tmp/srt/libsrt.a ./lib/
+cp ./tmp/srt/libsrt.* ./lib/
 
 # Remove #include "version.h" from srt.h
 echo "Fixing srt.h"
