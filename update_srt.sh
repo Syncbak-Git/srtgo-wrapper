@@ -4,6 +4,7 @@
 echo "Creating temporary workspace"
 if [ -d "./tmp" ];
 then
+    echo "Removing old tmp directory"
     rm -rf ./tmp
 fi
 mkdir -p ./tmp
