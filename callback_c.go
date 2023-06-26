@@ -1,7 +1,7 @@
 package srtgo
 
 /*
-#cgo LDFLAGS: -L./lib -lsrt
+#cgo LDFLAGS: -L./lib -lsrt -Wl,-rpath=./lib
 #include "callback.h"
 
 int srtListenCB(void* opaque, SRTSOCKET ns, int hs_version, const struct sockaddr* peeraddr, const char* streamid)

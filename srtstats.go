@@ -1,6 +1,6 @@
 package srtgo
 
-// #cgo LDFLAGS: -L./lib -lsrt
+// #cgo LDFLAGS: -L./lib -lsrt -Wl,-rpath=./lib
 // #include "srt.h"
 import "C"
 

@@ -1,7 +1,7 @@
 package srtgo
 
 /*
-#cgo LDFLAGS: -L./lib -lsrt
+#cgo LDFLAGS: -L./lib -lsrt -Wl,-rpath=./lib
 #include "srt.h"
 #include "access_control.h"
 #include "callback.h"
