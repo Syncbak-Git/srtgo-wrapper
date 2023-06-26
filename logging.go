@@ -2,7 +2,7 @@ package srtgo
 
 /*
 #cgo LDFLAGS: -lsrt
-#include <srt/srt.h>
+#include "srt.h"
 extern void srtLogCB(void* opaque, int level, const char* file, int line, const char* area, const char* message);
 */
 import "C"

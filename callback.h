@@ -1,4 +1,4 @@
-#include <srt/srt.h>
+#include "srt.h"
 
 int srtListenCBWrapper(void* opaque, SRTSOCKET ns, int hs_version, struct sockaddr* peeraddr, char* streamid);
 void srtConnectCBWrapper(void* opaque, SRTSOCKET ns, int errorcode, struct sockaddr* peeraddr, int token);

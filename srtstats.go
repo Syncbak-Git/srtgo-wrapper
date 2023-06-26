@@ -1,7 +1,7 @@
 package srtgo
 
 // #cgo LDFLAGS: -lsrt
-// #include <srt/srt.h>
+// #include "srt.h"
 import "C"
 
 type SrtStats struct {

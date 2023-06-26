@@ -2,8 +2,8 @@ package srtgo
 
 /*
 #cgo LDFLAGS: -lsrt
-#include <srt/srt.h>
-#include <srt/access_control.h>
+#include "srt.h"
+#include "access_control.h"
 #include "callback.h"
 static const SRTSOCKET get_srt_invalid_sock() { return SRT_INVALID_SOCK; };
 static const int get_srt_error() { return SRT_ERROR; };

@@ -2,7 +2,7 @@ package srtgo
 
 /*
 #cgo LDFLAGS: -lsrt
-#include <srt/srt.h>
+#include "srt.h"
 
 int srt_sendmsg2_wrapped(SRTSOCKET u, const char* buf, int len, SRT_MSGCTRL *mctrl, int *srterror, int *syserror)
 {
