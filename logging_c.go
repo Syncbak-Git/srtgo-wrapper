@@ -1,7 +1,7 @@
 package srtgo
 
 /*
-#cgo LDFLAGS: -lsrt
+#cgo LDFLAGS: -L./lib -lsrt
 #include "srt.h"
 
 extern void srtLogCBWrapper (void* opaque, int level, char* file, int line, char* area, char* message);

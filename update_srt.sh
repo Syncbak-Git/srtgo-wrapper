@@ -13,8 +13,12 @@ mkdir -p ./tmp
 echo "Fetching srt repo"
 cd tmp
 git clone https://github.com/Haivision/srt.git
-cd ..
+cd srt
+./configure
+make -j 4
+cd ../..
 cp ./tmp/srt/srtcore/*.h .
+cp ./tmp/srt/libsrt.a ./lib/
 
 # Remove #include "version.h" from srt.h
 echo "Fixing srt.h"
