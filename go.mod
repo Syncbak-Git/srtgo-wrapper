@@ -1,4 +1,4 @@
-module github.com/haivision/srtgo
+module github.com/Syncbak-Git/srtgo-wrapper
 
 go 1.12
 
