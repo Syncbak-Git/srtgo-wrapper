@@ -1,6 +1,7 @@
 package srtgo
 
 /*
+#cgo CFLAGS: -I${SRCDIR}/lib
 #cgo LDFLAGS: -L${SRCDIR}/lib -lsrt -Wl,-rpath=${SRCDIR}/lib
 #include "srt.h"
 #include "access_control.h"
