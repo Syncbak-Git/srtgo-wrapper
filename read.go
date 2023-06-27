@@ -1,8 +1,8 @@
 package srtgo
 
 /*
-#cgo CFLAGS: -I${SRCDIR}/lib
-#cgo LDFLAGS: -L${SRCDIR}/lib -lsrt -Wl,-rpath=${SRCDIR}/lib
+
+#cgo LDFLAGS: -lsrt
 #include "srt.h"
 
 int srt_recvmsg2_wrapped(SRTSOCKET u, char* buf, int len, SRT_MSGCTRL *mctrl, int *srterror, int *syserror)

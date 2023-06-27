@@ -1,7 +1,6 @@
 package main
 
-// #cgo CFLAGS: -I${SRCDIR}/lib
-// #cgo LDFLAGS: -L${SRCDIR}/lib -lsrt -Wl,-rpath=${SRCDIR}/lib
+// #cgo LDFLAGS: -lsrt
 // #include "srt.h"
 import "C"
 
