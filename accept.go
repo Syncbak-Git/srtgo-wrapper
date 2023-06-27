@@ -1,7 +1,8 @@
 package srtgo
 
 /*
-#cgo LDFLAGS: -L./lib -lsrt -Wl,-rpath=./lib -Wl,-rpath=./lib
+#cgo CFLAGS: -I./lib
+#cgo LDFLAGS: -L./lib -lsrt
 #include "srt.h"
 
 SRTSOCKET srt_accept_wrapped(SRTSOCKET lsn, struct sockaddr* addr, int* addrlen, int *srterror, int *syserror)
