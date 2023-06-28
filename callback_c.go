@@ -2,8 +2,8 @@ package srtgo
 
 /*
 
-#cgo CXXFLAGS: -DENABLE_ENCRYPTION=0 -DUSE_OPENSSL
-#cgo CFLAGS: -DENABLE_ENCRYPTION=0 -DUSE_OPENSSL
+#cgo CXXFLAGS: -DSRT_ENABLE_ENCRYPTION=0
+#cgo CFLAGS: -DSRT_ENABLE_ENCRYPTION=0
 #include "callback.h"
 
 int srtListenCB(void* opaque, SRTSOCKET ns, int hs_version, const struct sockaddr* peeraddr, const char* streamid)
