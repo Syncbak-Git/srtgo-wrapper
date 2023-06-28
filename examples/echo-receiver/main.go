@@ -1,6 +1,7 @@
 package main
 
-// #cgo LDFLAGS: -lsrt
+// #cgo CXXFLAGS: -DENABLE_ENCRYPTION=0 -DUSE_OPENSSL
+// #cgo CFLAGS: -DENABLE_ENCRYPTION=0 -DUSE_OPENSSL
 // #include "srt.h"
 import "C"
 

@@ -1,69 +1,289 @@
 # github.com/Syncbak-Git/srtgo-wrapper
-In file included from cryspr.h:39,
+cryspr-openssl-evp.c: In function ‘crysprOpenSSL_EVP_AES_SetKey’:
+cryspr-openssl-evp.c:90:33: warning: passing argument 1 of ‘EVP_EncryptInit_ex’ from incompatible pointer type [-Wincompatible-pointer-types]
+   90 |         if (!EVP_EncryptInit_ex(aes_key, cipher, NULL, kstr, NULL))
+      |                                 ^~~~~~~
+      |                                 |
+      |                                 CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
                  from hcrypt.h:48,
-                 from cryspr-gnutls.c:22:
-cryspr-config.h:25:2: error: #error Cryspr implementation not selected. Please define USE_* + OPENSSL/GNUTLS/MBEDTLS.
-   25 | #error Cryspr implementation not selected. Please define USE_* + OPENSSL/GNUTLS/MBEDTLS.
-      |  ^~~~~
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:751:51: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  751 | /*__owur*/ int EVP_EncryptInit_ex(EVP_CIPHER_CTX *ctx,
+      |                                   ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c:98:33: warning: passing argument 1 of ‘EVP_DecryptInit_ex’ from incompatible pointer type [-Wincompatible-pointer-types]
+   98 |         if (!EVP_DecryptInit_ex(aes_key, cipher, NULL, kstr, NULL))
+      |                                 ^~~~~~~
+      |                                 |
+      |                                 CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:768:51: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  768 | /*__owur*/ int EVP_DecryptInit_ex(EVP_CIPHER_CTX *ctx,
+      |                                   ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c: In function ‘crysprOpenSSL_EVP_Open’:
+cryspr-openssl-evp.c:116:26: error: incompatible types when assigning to type ‘CRYSPR_AESCTX’ {aka ‘struct aes_key_st’} from type ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’}
+  116 |     cryspr_cb->aes_kek = EVP_CIPHER_CTX_new();
+      |                          ^~~~~~~~~~~~~~~~~~
+cryspr-openssl-evp.c:118:29: error: incompatible types when assigning to type ‘CRYSPR_AESCTX’ {aka ‘struct aes_key_st’} from type ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’}
+  118 |     cryspr_cb->aes_sek[0] = EVP_CIPHER_CTX_new();
+      |                             ^~~~~~~~~~~~~~~~~~
+cryspr-openssl-evp.c:120:29: error: incompatible types when assigning to type ‘CRYSPR_AESCTX’ {aka ‘struct aes_key_st’} from type ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’}
+  120 |     cryspr_cb->aes_sek[1] = EVP_CIPHER_CTX_new();
+      |                             ^~~~~~~~~~~~~~~~~~
+cryspr-openssl-evp.c: In function ‘crysprOpenSSL_EVP_Close’:
+cryspr-openssl-evp.c:129:47: error: incompatible type for argument 1 of ‘EVP_CIPHER_CTX_free’
+  129 |         EVP_CIPHER_CTX_free(cryspr_cb->aes_sek[0]);
+      |                             ~~~~~~~~~~~~~~~~~~^~~
+      |                                               |
+      |                                               CRYSPR_AESCTX {aka struct aes_key_st}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:875:42: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX’ {aka ‘struct aes_key_st’}
+  875 | void EVP_CIPHER_CTX_free(EVP_CIPHER_CTX *c);
+      |                          ~~~~~~~~~~~~~~~~^
+cryspr-openssl-evp.c:130:47: error: incompatible type for argument 1 of ‘EVP_CIPHER_CTX_free’
+  130 |         EVP_CIPHER_CTX_free(cryspr_cb->aes_sek[1]);
+      |                             ~~~~~~~~~~~~~~~~~~^~~
+      |                                               |
+      |                                               CRYSPR_AESCTX {aka struct aes_key_st}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:875:42: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX’ {aka ‘struct aes_key_st’}
+  875 | void EVP_CIPHER_CTX_free(EVP_CIPHER_CTX *c);
+      |                          ~~~~~~~~~~~~~~~~^
+cryspr-openssl-evp.c:131:38: error: incompatible type for argument 1 of ‘EVP_CIPHER_CTX_free’
+  131 |         EVP_CIPHER_CTX_free(cryspr_cb->aes_kek);
+      |                             ~~~~~~~~~^~~~~~~~~
+      |                                      |
+      |                                      CRYSPR_AESCTX {aka struct aes_key_st}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:875:42: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX’ {aka ‘struct aes_key_st’}
+  875 | void EVP_CIPHER_CTX_free(EVP_CIPHER_CTX *c);
+      |                          ~~~~~~~~~~~~~~~~^
+cryspr-openssl-evp.c: In function ‘crysprOpenSSL_EVP_AES_CtrCipher’:
+cryspr-openssl-evp.c:216:28: warning: passing argument 1 of ‘EVP_CipherInit_ex’ from incompatible pointer type [-Wincompatible-pointer-types]
+  216 |     if (!EVP_CipherInit_ex(aes_key, NULL, NULL, NULL, iv, -1))
+      |                            ^~~~~~~
+      |                            |
+      |                            CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:786:50: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  786 | /*__owur*/ int EVP_CipherInit_ex(EVP_CIPHER_CTX *ctx,
+      |                                  ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c:221:37: warning: passing argument 1 of ‘EVP_CIPHER_CTX_set_padding’ from incompatible pointer type [-Wincompatible-pointer-types]
+  221 |     if (!EVP_CIPHER_CTX_set_padding(aes_key, 0))
+      |                                     ^~~~~~~
+      |                                     |
+      |                                     CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:877:48: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  877 | int EVP_CIPHER_CTX_set_padding(EVP_CIPHER_CTX *c, int pad);
+      |                                ~~~~~~~~~~~~~~~~^
+cryspr-openssl-evp.c:230:27: warning: passing argument 1 of ‘EVP_CipherUpdate’ from incompatible pointer type [-Wincompatible-pointer-types]
+  230 |     if (!EVP_CipherUpdate(aes_key, out_txt, &c_len, indata, (int)inlen))
+      |                           ^~~~~~~
+      |                           |
+      |                           CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:793:45: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  793 | __owur int EVP_CipherUpdate(EVP_CIPHER_CTX *ctx, unsigned char *out,
+      |                             ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c:239:33: warning: passing argument 1 of ‘EVP_CipherFinal_ex’ from incompatible pointer type [-Wincompatible-pointer-types]
+  239 |     if (0 == EVP_CipherFinal_ex(aes_key, &out_txt[c_len], &f_len))
+      |                                 ^~~~~~~
+      |                                 |
+      |                                 CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:797:47: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  797 | __owur int EVP_CipherFinal_ex(EVP_CIPHER_CTX *ctx, unsigned char *outm,
+      |                               ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c: In function ‘crysprOpenSSL_EVP_AES_GCMCipher’:
+cryspr-openssl-evp.c:267:28: warning: passing argument 1 of ‘EVP_CipherInit_ex’ from incompatible pointer type [-Wincompatible-pointer-types]
+  267 |     if (!EVP_CipherInit_ex(aes_key, NULL, NULL, NULL, iv, -1))
+      |                            ^~~~~~~
+      |                            |
+      |                            CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:786:50: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  786 | /*__owur*/ int EVP_CipherInit_ex(EVP_CIPHER_CTX *ctx,
+      |                                  ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c:272:37: warning: passing argument 1 of ‘EVP_CIPHER_CTX_set_padding’ from incompatible pointer type [-Wincompatible-pointer-types]
+  272 |     if (!EVP_CIPHER_CTX_set_padding(aes_key, 0))
+      |                                     ^~~~~~~
+      |                                     |
+      |                                     CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:877:48: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  877 | int EVP_CIPHER_CTX_set_padding(EVP_CIPHER_CTX *c, int pad);
+      |                                ~~~~~~~~~~~~~~~~^
+cryspr-openssl-evp.c:282:31: warning: passing argument 1 of ‘EVP_CipherUpdate’ from incompatible pointer type [-Wincompatible-pointer-types]
+  282 |     if (1 != EVP_CipherUpdate(aes_key, NULL, &c_len, aad, (int) aadlen))
+      |                               ^~~~~~~
+      |                               |
+      |                               CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:793:45: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  793 | __owur int EVP_CipherUpdate(EVP_CIPHER_CTX *ctx, unsigned char *out,
+      |                             ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c:292:27: warning: passing argument 1 of ‘EVP_CipherUpdate’ from incompatible pointer type [-Wincompatible-pointer-types]
+  292 |     if (!EVP_CipherUpdate(aes_key, out_txt, &c_len, indata, (int) inlen))
+      |                           ^~~~~~~
+      |                           |
+      |                           CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:793:45: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  793 | __owur int EVP_CipherUpdate(EVP_CIPHER_CTX *ctx, unsigned char *out,
+      |                             ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c:298:43: warning: passing argument 1 of ‘EVP_CIPHER_CTX_ctrl’ from incompatible pointer type [-Wincompatible-pointer-types]
+  298 |     if (!bEncrypt && !EVP_CIPHER_CTX_ctrl(aes_key, EVP_CTRL_GCM_SET_TAG, HAICRYPT_AUTHTAG_MAX, out_tag)) {
+      |                                           ^~~~~~~
+      |                                           |
+      |                                           CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:878:41: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  878 | int EVP_CIPHER_CTX_ctrl(EVP_CIPHER_CTX *ctx, int type, int arg, void *ptr);
+      |                         ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c:307:33: warning: passing argument 1 of ‘EVP_CipherFinal_ex’ from incompatible pointer type [-Wincompatible-pointer-types]
+  307 |     if (0 == EVP_CipherFinal_ex(aes_key, &out_txt[c_len], &f_len))
+      |                                 ^~~~~~~
+      |                                 |
+      |                                 CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:797:47: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  797 | __owur int EVP_CipherFinal_ex(EVP_CIPHER_CTX *ctx, unsigned char *outm,
+      |                               ~~~~~~~~~~~~~~~~^~~
+cryspr-openssl-evp.c:321:42: warning: passing argument 1 of ‘EVP_CIPHER_CTX_ctrl’ from incompatible pointer type [-Wincompatible-pointer-types]
+  321 |     if (bEncrypt && !EVP_CIPHER_CTX_ctrl(aes_key, EVP_CTRL_GCM_GET_TAG, HAICRYPT_AUTHTAG_MAX, out_tag))
+      |                                          ^~~~~~~
+      |                                          |
+      |                                          CRYSPR_AESCTX * {aka struct aes_key_st *}
+In file included from cryspr-openssl.h:23,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/evp.h:878:41: note: expected ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} but argument is of type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’}
+  878 | int EVP_CIPHER_CTX_ctrl(EVP_CIPHER_CTX *ctx, int type, int arg, void *ptr);
+      |                         ~~~~~~~~~~~~~~~~^~~
 In file included from hcrypt.h:48,
-                 from cryspr-gnutls.c:22:
-cryspr.h:48:5: error: unknown type name ‘CRYSPR_AESCTX’
-   48 |     CRYSPR_AESCTX   aes_kek;            /* Key Encrypting Key (KEK) */
-      |     ^~~~~~~~~~~~~
-cryspr.h:49:5: error: unknown type name ‘CRYSPR_AESCTX’
-   49 |     CRYSPR_AESCTX   aes_sek[2];         /* even/odd Stream Encrypting Key (SEK) */
-      |     ^~~~~~~~~~~~~
-cryspr.h:85:13: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
-   85 |             CRYSPR_AESCTX *aeskey); /* Cryptolib Specific AES key context */
-      |             ^~~~~~~~~~~~~
-      |             CRYSPR_AESBLKSZ
-cryspr.h:89:13: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
-   89 |             CRYSPR_AESCTX *aes_key, /* ctx */
-      |             ^~~~~~~~~~~~~
-      |             CRYSPR_AESBLKSZ
-cryspr.h:97:13: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
-   97 |             CRYSPR_AESCTX *aes_key, /* ctx */
-      |             ^~~~~~~~~~~~~
-      |             CRYSPR_AESBLKSZ
-cryspr.h:105:13: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
-  105 |             CRYSPR_AESCTX* aes_key, /* ctx */
-      |             ^~~~~~~~~~~~~
-      |             CRYSPR_AESBLKSZ
-cryspr-gnutls.c: In function ‘crysprGnuTLS_Prng’:
-cryspr-gnutls.c:38:12: warning: implicit declaration of function ‘gnutls_rnd’ [-Wimplicit-function-declaration]
-   38 |     return(gnutls_rnd(GNUTLS_RND_KEY,(rn),(len)) < 0 ? -1 : 0);
-      |            ^~~~~~~~~~
-cryspr-gnutls.c:38:23: error: ‘GNUTLS_RND_KEY’ undeclared (first use in this function)
-   38 |     return(gnutls_rnd(GNUTLS_RND_KEY,(rn),(len)) < 0 ? -1 : 0);
-      |                       ^~~~~~~~~~~~~~
-cryspr-gnutls.c:38:23: note: each undeclared identifier is reported only once for each function it appears in
-cryspr-gnutls.c: At top level:
-cryspr-gnutls.c:46:5: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
-   46 |     CRYSPR_AESCTX *aes_key)     /* Cryptolib Specific AES key context */
-      |     ^~~~~~~~~~~~~
-      |     CRYSPR_AESBLKSZ
-cryspr-gnutls.c:68:5: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
-   68 |     CRYSPR_AESCTX *aes_key,     /* CryptoLib AES context */
-      |     ^~~~~~~~~~~~~
-      |     CRYSPR_AESBLKSZ
-cryspr-gnutls.c:108:5: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
-  108 |     CRYSPR_AESCTX *aes_key,     /* CryptoLib AES context */
-      |     ^~~~~~~~~~~~~
-      |     CRYSPR_AESBLKSZ
-cryspr-gnutls.c: In function ‘crysprGnuTLS’:
-cryspr-gnutls.c:181:30: error: ‘CRYSPR_methods’ {aka ‘struct tag_CRYSPR_methods’} has no member named ‘aes_set_key’; did you mean ‘ms_setkey’?
-  181 |         crysprGnuTLS_methods.aes_set_key    = crysprGnuTLS_AES_SetKey;
-      |                              ^~~~~~~~~~~
-      |                              ms_setkey
-cryspr-gnutls.c:181:47: error: ‘crysprGnuTLS_AES_SetKey’ undeclared (first use in this function)
-  181 |         crysprGnuTLS_methods.aes_set_key    = crysprGnuTLS_AES_SetKey;
-      |                                               ^~~~~~~~~~~~~~~~~~~~~~~
-cryspr-gnutls.c:187:29: error: ‘CRYSPR_methods’ {aka ‘struct tag_CRYSPR_methods’} has no member named ‘aes_ecb_cipher’
-  187 |         crysprGnuTLS_methods.aes_ecb_cipher = crysprGnuTLS_AES_EcbCipher;
-      |                             ^
-cryspr-gnutls.c:187:47: error: ‘crysprGnuTLS_AES_EcbCipher’ undeclared (first use in this function)
-  187 |         crysprGnuTLS_methods.aes_ecb_cipher = crysprGnuTLS_AES_EcbCipher;
-      |                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~
-cryspr-gnutls.c:190:47: error: ‘crysprGnuTLS_SHA1_MsgDigest’ undeclared (first use in this function)
-  190 |         crysprGnuTLS_methods.sha1_msg_digest= crysprGnuTLS_SHA1_MsgDigest; //Onl required if using generic KmPbkdf2
-      |                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 from cryspr-openssl-evp.c:19:
+cryspr-openssl-evp.c: In function ‘crysprOpenSSL_EVP_KmWrap’:
+cryspr.h:50:33: warning: initialization of ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} from incompatible pointer type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’} [-Wincompatible-pointer-types]
+   50 | #define CRYSPR_GETKEK(cb)       (&((cb)->aes_kek))
+      |                                 ^
+cryspr-openssl-evp.c:352:38: note: in expansion of macro ‘CRYSPR_GETKEK’
+  352 |     EVP_CIPHER_CTX*       kek      = CRYSPR_GETKEK(cryspr_cb); // key encrypting key
+      |                                      ^~~~~~~~~~~~~
+cryspr-openssl-evp.c:354:5: warning: ‘AES_wrap_key’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  354 |     return (((seklen + HAICRYPT_WRAPKEY_SIGN_SZ) == (unsigned int)AES_wrap_key(kek, NULL, wrap, sek, seklen)) ? 0 : -1);
+      |     ^~~~~~
+In file included from cryspr-openssl.h:24,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/aes.h:97:5: note: declared here
+   97 | int AES_wrap_key(AES_KEY *key, const unsigned char *iv,
+      |     ^~~~~~~~~~~~
+cryspr-openssl-evp.c:354:80: warning: passing argument 1 of ‘AES_wrap_key’ from incompatible pointer type [-Wincompatible-pointer-types]
+  354 |     return (((seklen + HAICRYPT_WRAPKEY_SIGN_SZ) == (unsigned int)AES_wrap_key(kek, NULL, wrap, sek, seklen)) ? 0 : -1);
+      |                                                                                ^~~
+      |                                                                                |
+      |                                                                                EVP_CIPHER_CTX * {aka struct evp_cipher_ctx_st *}
+In file included from cryspr-openssl.h:24,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/aes.h:97:27: note: expected ‘AES_KEY *’ {aka ‘struct aes_key_st *’} but argument is of type ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’}
+   97 | int AES_wrap_key(AES_KEY *key, const unsigned char *iv,
+      |                  ~~~~~~~~~^~~
+In file included from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+cryspr-openssl-evp.c: In function ‘crysprOpenSSL_EVP_KmUnwrap’:
+cryspr.h:50:33: warning: initialization of ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’} from incompatible pointer type ‘CRYSPR_AESCTX *’ {aka ‘struct aes_key_st *’} [-Wincompatible-pointer-types]
+   50 | #define CRYSPR_GETKEK(cb)       (&((cb)->aes_kek))
+      |                                 ^
+cryspr-openssl-evp.c:363:38: note: in expansion of macro ‘CRYSPR_GETKEK’
+  363 |     EVP_CIPHER_CTX*       kek      = CRYSPR_GETKEK(cryspr_cb); // key encrypting key
+      |                                      ^~~~~~~~~~~~~
+cryspr-openssl-evp.c:365:5: warning: ‘AES_unwrap_key’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  365 |     return (((wraplen - HAICRYPT_WRAPKEY_SIGN_SZ) == (unsigned int)AES_unwrap_key(kek, NULL, sek, wrap, wraplen)) ? 0
+      |     ^~~~~~
+In file included from cryspr-openssl.h:24,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/aes.h:101:5: note: declared here
+  101 | int AES_unwrap_key(AES_KEY *key, const unsigned char *iv,
+      |     ^~~~~~~~~~~~~~
+cryspr-openssl-evp.c:365:83: warning: passing argument 1 of ‘AES_unwrap_key’ from incompatible pointer type [-Wincompatible-pointer-types]
+  365 |     return (((wraplen - HAICRYPT_WRAPKEY_SIGN_SZ) == (unsigned int)AES_unwrap_key(kek, NULL, sek, wrap, wraplen)) ? 0
+      |                                                                                   ^~~
+      |                                                                                   |
+      |                                                                                   EVP_CIPHER_CTX * {aka struct evp_cipher_ctx_st *}
+In file included from cryspr-openssl.h:24,
+                 from cryspr-config.h:9,
+                 from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-openssl-evp.c:19:
+/usr/include/openssl/aes.h:101:29: note: expected ‘AES_KEY *’ {aka ‘struct aes_key_st *’} but argument is of type ‘EVP_CIPHER_CTX *’ {aka ‘struct evp_cipher_ctx_st *’}
+  101 | int AES_unwrap_key(AES_KEY *key, const unsigned char *iv,
+      |                    ~~~~~~~~~^~~
