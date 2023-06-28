@@ -2,7 +2,8 @@ package srtgo
 
 /*
 
-#cgo LDFLAGS: -lsrt
+#cgo CXXFLAGS: -DENABLE_ENCRYPTION=0 -DUSE_OPENSSL
+#cgo CFLAGS: -DENABLE_ENCRYPTION=0 -DUSE_OPENSSL
 #include "srt.h"
 
 SRTSOCKET srt_accept_wrapped(SRTSOCKET lsn, struct sockaddr* addr, int* addrlen, int *srterror, int *syserror)
