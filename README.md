@@ -1,63 +1,75 @@
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/haivision/srtgo)](https://pkg.go.dev/github.com/haivision/srtgo)
+SRT Core
+========
 
-# srtgo
+These files are contents of the SRT library. Beside files that are used exclusively
+and internally by the library, this directory also contains:
 
-Go bindings for [SRT](https://github.com/Haivision/srt) (Secure Reliable Transport), the open source transport technology that optimizes streaming performance across unpredictable networks.
+ - common files: usually header files, which can be used also by other projects,
+even if they don't link against SRT
 
-## Why srtgo?
-The purpose of srtgo is easing the adoption of SRT transport technology. Using Go, with just a few lines of code you can implement an application that sends/receives data with all the benefits of SRT technology: security and reliability, while keeping latency low.
+ - public and protected header files - header files for the library, which will
+be picked up from here
 
-## Is this a new implementation of SRT?
-No! We are just exposing the great work done by the community in the [SRT project](https://github.com/Haivision/srt) as a golang library. All the functionality and implementation still resides in the official SRT project.
-
-
-# Features supported
-* Basic API exposed to easy develop SRT sender/receiver apps
-* Caller and Listener mode
-* Live transport type
-* File transport type
-* Message/Buffer API
-* SRT transport options up to SRT 1.4.1
-* SRT Stats retrieval
-
-# Usage
-Example of a SRT receiver application:
-``` go
-package main
-
-import (
-    "github.com/haivision/srtgo"
-    "fmt"
-)
-
-func main() {
-    options := make(map[string]string)
-    options["transtype"] = "file"
-
-    sck := srtgo.NewSrtSocket("0.0.0.0", 8090, options)
-    defer sck.Close()
-    sck.Listen(1)
-    s, _ := sck.Accept()
-    defer s.Close()
-
-    buf := make([]byte, 2048)
-    for {
-        n, _ := s.Read(buf)
-        if n == 0 {
-            break
-        }
-        fmt.Println("Received %d bytes", n)
-    }
-    //....
-}
-
-```
+Which header files are public, protected and private, it's defined in the manifest
+file together with all source files that the SRT library comprises of: `filelist.maf`.
 
 
-# Dependencies
+Common files
+============
 
-* srtlib
+This directory holds the files that may be used separately by both SRT library
+itself and the internal applications.
 
-You can find detailed instructions about how to install srtlib in its [README file](https://github.com/Haivision/srt#requirements)
+Source files are added to SRT library, so apps don't have to use them. However
+these source files might be used by some internal applications that do not
+link against SRT library.
 
-gosrt has been developed with srt 1.4.1 as its main target and has been successfully tested in srt 1.3.4 and above.
+Header files contained here might be required by internal applications no
+matter if they link against SRT or not. They are here because simultaneously
+they are used also by the SRT library.
+
+
+Utilities
+=========
+
+1. threadname.h
+
+This is a utility that is useful for debugging and it allows a thread to be given
+a name. This name is used in the logging messages, as well as you can see it also
+inside the debugger.
+
+This is currently supported only on Linux; some more portable and more reliable
+way is needed.
+
+2. utilities.h
+
+A set of various reusable components, all defined as C++ classes or C++ inline
+functions. 
+
+3. `netinet_any.h`
+
+This defines a `sockaddr_any` type, which simplifies dealing with the BSD socket API
+using `sockaddr`, `sockaddr_in` and `sockaddr_in6` structures.
+
+
+Compat and portability
+======================
+
+1. `srt_compat.h`
+
+This part contains some portability problem resolutions, including:
+ - `strerror` in a version that is both portable and thread safe
+ - `localtime` in a version that is both portable and thread safe
+
+2. win directory
+
+This contains various header files that are used on Windows platform only.
+They provide various facilities available OOTB on POSIX systems.
+
+3. `platform_sys.h`
+
+This is a file that is responsible to include whatever system include
+files must be included for whatever system API must be provided for
+the needs of SRT library. This is a part of public headers.
+
+

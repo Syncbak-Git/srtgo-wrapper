@@ -1,0 +1,69 @@
+# github.com/Syncbak-Git/srtgo-wrapper
+In file included from cryspr.h:39,
+                 from hcrypt.h:48,
+                 from cryspr-gnutls.c:22:
+cryspr-config.h:25:2: error: #error Cryspr implementation not selected. Please define USE_* + OPENSSL/GNUTLS/MBEDTLS.
+   25 | #error Cryspr implementation not selected. Please define USE_* + OPENSSL/GNUTLS/MBEDTLS.
+      |  ^~~~~
+In file included from hcrypt.h:48,
+                 from cryspr-gnutls.c:22:
+cryspr.h:48:5: error: unknown type name ‘CRYSPR_AESCTX’
+   48 |     CRYSPR_AESCTX   aes_kek;            /* Key Encrypting Key (KEK) */
+      |     ^~~~~~~~~~~~~
+cryspr.h:49:5: error: unknown type name ‘CRYSPR_AESCTX’
+   49 |     CRYSPR_AESCTX   aes_sek[2];         /* even/odd Stream Encrypting Key (SEK) */
+      |     ^~~~~~~~~~~~~
+cryspr.h:85:13: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
+   85 |             CRYSPR_AESCTX *aeskey); /* Cryptolib Specific AES key context */
+      |             ^~~~~~~~~~~~~
+      |             CRYSPR_AESBLKSZ
+cryspr.h:89:13: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
+   89 |             CRYSPR_AESCTX *aes_key, /* ctx */
+      |             ^~~~~~~~~~~~~
+      |             CRYSPR_AESBLKSZ
+cryspr.h:97:13: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
+   97 |             CRYSPR_AESCTX *aes_key, /* ctx */
+      |             ^~~~~~~~~~~~~
+      |             CRYSPR_AESBLKSZ
+cryspr.h:105:13: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
+  105 |             CRYSPR_AESCTX* aes_key, /* ctx */
+      |             ^~~~~~~~~~~~~
+      |             CRYSPR_AESBLKSZ
+cryspr-gnutls.c: In function ‘crysprGnuTLS_Prng’:
+cryspr-gnutls.c:38:12: warning: implicit declaration of function ‘gnutls_rnd’ [-Wimplicit-function-declaration]
+   38 |     return(gnutls_rnd(GNUTLS_RND_KEY,(rn),(len)) < 0 ? -1 : 0);
+      |            ^~~~~~~~~~
+cryspr-gnutls.c:38:23: error: ‘GNUTLS_RND_KEY’ undeclared (first use in this function)
+   38 |     return(gnutls_rnd(GNUTLS_RND_KEY,(rn),(len)) < 0 ? -1 : 0);
+      |                       ^~~~~~~~~~~~~~
+cryspr-gnutls.c:38:23: note: each undeclared identifier is reported only once for each function it appears in
+cryspr-gnutls.c: At top level:
+cryspr-gnutls.c:46:5: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
+   46 |     CRYSPR_AESCTX *aes_key)     /* Cryptolib Specific AES key context */
+      |     ^~~~~~~~~~~~~
+      |     CRYSPR_AESBLKSZ
+cryspr-gnutls.c:68:5: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
+   68 |     CRYSPR_AESCTX *aes_key,     /* CryptoLib AES context */
+      |     ^~~~~~~~~~~~~
+      |     CRYSPR_AESBLKSZ
+cryspr-gnutls.c:108:5: error: unknown type name ‘CRYSPR_AESCTX’; did you mean ‘CRYSPR_AESBLKSZ’?
+  108 |     CRYSPR_AESCTX *aes_key,     /* CryptoLib AES context */
+      |     ^~~~~~~~~~~~~
+      |     CRYSPR_AESBLKSZ
+cryspr-gnutls.c: In function ‘crysprGnuTLS’:
+cryspr-gnutls.c:181:30: error: ‘CRYSPR_methods’ {aka ‘struct tag_CRYSPR_methods’} has no member named ‘aes_set_key’; did you mean ‘ms_setkey’?
+  181 |         crysprGnuTLS_methods.aes_set_key    = crysprGnuTLS_AES_SetKey;
+      |                              ^~~~~~~~~~~
+      |                              ms_setkey
+cryspr-gnutls.c:181:47: error: ‘crysprGnuTLS_AES_SetKey’ undeclared (first use in this function)
+  181 |         crysprGnuTLS_methods.aes_set_key    = crysprGnuTLS_AES_SetKey;
+      |                                               ^~~~~~~~~~~~~~~~~~~~~~~
+cryspr-gnutls.c:187:29: error: ‘CRYSPR_methods’ {aka ‘struct tag_CRYSPR_methods’} has no member named ‘aes_ecb_cipher’
+  187 |         crysprGnuTLS_methods.aes_ecb_cipher = crysprGnuTLS_AES_EcbCipher;
+      |                             ^
+cryspr-gnutls.c:187:47: error: ‘crysprGnuTLS_AES_EcbCipher’ undeclared (first use in this function)
+  187 |         crysprGnuTLS_methods.aes_ecb_cipher = crysprGnuTLS_AES_EcbCipher;
+      |                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~
+cryspr-gnutls.c:190:47: error: ‘crysprGnuTLS_SHA1_MsgDigest’ undeclared (first use in this function)
+  190 |         crysprGnuTLS_methods.sha1_msg_digest= crysprGnuTLS_SHA1_MsgDigest; //Onl required if using generic KmPbkdf2
+      |                                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~
