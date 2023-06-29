@@ -4,6 +4,7 @@
 // Size of the single block for encryption.
 // This might need tweaking for particular implementation library.
 #define CRYSPR_AESBLKSZ 16              /* 128-bit */
+#define USE_OPENSSL
 
 #if defined(USE_OPENSSL)
 #include "cryspr-openssl.h"
