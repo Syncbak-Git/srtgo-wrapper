@@ -53,7 +53,7 @@ written by
 #include "socketconfig.h"
 
 using namespace srt;
-extern const int32_t SRT_DEF_VERSION = SrtParseVersion(SRT_VERSION);
+extern const int32_t SRT_DEF_VERSION = SrtParseVersion(SRT_VERSION_STRING);
 
 namespace {
 typedef void setter_function(CSrtConfig& co, const void* optval, int optlen);
