@@ -4,6 +4,7 @@ package srtgo
 
 #cgo CXXFLAGS: -DSRT_ENABLE_ENCRYPTION=0
 #cgo CFLAGS: -DSRT_ENABLE_ENCRYPTION=0
+#cgo LDFLAGS: -lssl -lcrypto
 #include "srt.h"
 
 int srt_recvmsg2_wrapped(SRTSOCKET u, char* buf, int len, SRT_MSGCTRL *mctrl, int *srterror, int *syserror)

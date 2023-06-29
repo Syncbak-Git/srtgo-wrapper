@@ -1,5 +1,6 @@
 package srtgo
 
+//#cgo LDFLAGS: -lssl -lcrypto
 //#include "srt.h"
 import "C"
 

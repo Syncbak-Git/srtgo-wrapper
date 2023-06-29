@@ -4,6 +4,7 @@ package srtgo
 
 #cgo CXXFLAGS: -DSRT_ENABLE_ENCRYPTION=0
 #cgo CFLAGS: -DSRT_ENABLE_ENCRYPTION=0
+#cgo LDFLAGS: -lssl -lcrypto
 #include "srt.h"
 extern void srtLogCB(void* opaque, int level, const char* file, int line, const char* area, const char* message);
 */
