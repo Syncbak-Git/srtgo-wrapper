@@ -12,6 +12,7 @@
 #include <iomanip>
 #include <math.h>
 #include <stdexcept>
+#include <stdio.h>
 #include "sync.h"
 #include "utilities.h"
 #include "udt.h"
@@ -52,7 +53,7 @@ static void rdtsc(uint64_t& x)
     asm("mov %0=ar.itc" : "=r"(x)::"memory");
 #elif SRT_SYNC_CLOCK == SRT_SYNC_CLOCK_AMD64_RDTSC
     uint32_t lval, hval;
-    asm("rdtsc" : "=a"(lval), "=d"(hval));
+    asm volatile("rdtsc" : "=a"(lval), "=d"(hval));
     x = hval;
     x = (x << 32) | lval;
 #elif SRT_SYNC_CLOCK == SRT_SYNC_CLOCK_WINQPC
@@ -115,9 +116,13 @@ static int64_t get_cpu_frequency()
     nanosleep(&ts, NULL);
     rdtsc(t2);
 
+    printf("t1: %lu and t2: %lu\n", t1, t2);
+
     // CPU clocks per microsecond
     frequency = int64_t(t2 - t1) / 100000;
 #endif
+
+    printf("%lu\n", frequency);
 
     return frequency;
 }
