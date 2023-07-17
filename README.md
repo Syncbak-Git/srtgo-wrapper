@@ -10,7 +10,7 @@ even if they don't link against SRT
  - public and protected header files - header files for the library, which will
 be picked up from here
 
-Which header files are public, protected and private, it's defined in the manifest
+Which header files are public, protected and private, is defined in the manifest
 file together with all source files that the SRT library comprises of: `filelist.maf`.
 
 
