@@ -1,8 +1,23 @@
 package srtgo
 
+// #cgo linux CFLAGS: -DLINUX
+// #cgo darwin CFLAGS: -DTARGET_OS_MAC
+// #cgo freebsd CFLAGS: -DBSD
+// #cgo windows CFLAGS: -DERROR_NO_WINDOWS_SUPPORT
+// #cgo i386 CFLAGS: -DIA32
+// #cgo amd64 CFLAGS: -DAMD64
+// #cgo linux CXXFLAGS: -DLINUX
+// #cgo darwin CXXFLAGS: -DTARGET_OS_MAC
+// #cgo freebsd CXXFLAGS: -DBSD
+// #cgo windows CXXFLAGS: -DERROR_NO_WINDOWS_SUPPORT
+// #cgo i386 CXXFLAGS: -DIA32
+// #cgo amd64 CXXFLAGS: -DAMD64
+
 /*
 
-#cgo LDFLAGS: -lsrt
+#cgo CXXFLAGS: -DSRT_ENABLE_ENCRYPTION=0
+#cgo CFLAGS: -DSRT_ENABLE_ENCRYPTION=0
+#cgo LDFLAGS: -lssl -lcrypto
 #include "srt.h"
 */
 import "C"
@@ -55,7 +70,7 @@ func (m *SrtEpollTimeout) Temporary() bool {
 	return true
 }
 
-//MUST be called from same OS thread that generated the error (i.e.: use runtime.LockOSThread())
+// MUST be called from same OS thread that generated the error (i.e.: use runtime.LockOSThread())
 func srtGetAndClearError() error {
 	defer C.srt_clearlasterror()
 	eSysErrno := C.int(0)
@@ -67,7 +82,7 @@ func srtGetAndClearError() error {
 	return srterr
 }
 
-//Based of off golang errno handling: https://cs.opensource.google/go/go/+/refs/tags/go1.16.6:src/syscall/syscall_unix.go;l=114
+// Based of off golang errno handling: https://cs.opensource.google/go/go/+/refs/tags/go1.16.6:src/syscall/syscall_unix.go;l=114
 type SRTErrno int
 
 func (e SRTErrno) Error() string {
@@ -143,7 +158,7 @@ func (e *srtErrnoSysErrnoWrapped) Unwrap() error {
 	return error(e.eSys)
 }
 
-//Shadows SRT_ERRNO srtcore/srt.h line 490+
+// Shadows SRT_ERRNO srtcore/srt.h line 490+
 const (
 	Unknown = SRTErrno(C.SRT_EUNKNOWN)
 	Success = SRTErrno(C.SRT_SUCCESS)
@@ -196,8 +211,8 @@ const (
 	EPeer = SRTErrno(C.SRT_EPEERERR)
 )
 
-//Unknown cannot be here since it would have a negative index!
-//Error strings taken from: https://github.com/Haivision/srt/blob/master/docs/API/API-functions.md
+// Unknown cannot be here since it would have a negative index!
+// Error strings taken from: https://github.com/Haivision/srt/blob/master/docs/API/API-functions.md
 var srterrors = [...]string{
 	Success:         "The value set when the last error was cleared and no error has occurred since then",
 	EConnSetup:      "General setup error resulting from internal system state",

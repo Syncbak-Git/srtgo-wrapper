@@ -16,6 +16,7 @@ written by
 #ifndef INC_SRTC_H
 #define INC_SRTC_H
 
+#include "version.h"
 
 #include "platform_sys.h"
 
