@@ -1,3 +1,11 @@
+Dependencies
+============
+
+`libssl-dev` and `libcrypto-dev` are required. On Ubuntu 22.04 and later, you can install these with:
+```
+sudo apt install libssl-dev
+```
+
 SRT Core
 ========
 
